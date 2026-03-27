@@ -23,11 +23,25 @@ function addBookToMyLibrary(title, author, pages, read){
     myLibrary.push(newBook);
 }
 
-addBookToMyLibrary('dune', 'frank', 412, true)
-addBookToMyLibrary('dune', 'frank', 412, true)
-addBookToMyLibrary('dune', 'frank', 412, true)
-addBookToMyLibrary('dune', 'frank', 412, true)
-addBookToMyLibrary('dune', 'frank', 412, true)
-console.log (myLibrary)
+addBookToMyLibrary('Dune', 'frank', 412, true)
+addBookToMyLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false)
+addBookToMyLibrary('1984', 'George Orwell', 328, true)
+addBookToMyLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false)
+addBookToMyLibrary('The Great Gatsby', 'F. Scott Fitzgerald', 180, true)
 
+// display books
+function display(){  
+    //empty
+    const container = document.querySelector("#library");
+    container.innerHTML='';
 
+    //card
+    myLibrary.forEach((book)=>{
+        const card= 
+        `<div class="book-card">
+            <p>${book.info()}</p>
+        </div>`;
+        container.innerHTML += card;
+    })
+}
+display()
