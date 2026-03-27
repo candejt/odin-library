@@ -47,7 +47,6 @@ function display(){
         container.innerHTML += card;
     })
 }
-display()
 
 //create Book button
 const newBookBtn=document.querySelector("#new-book-btn")
@@ -56,3 +55,23 @@ const dialog=document.querySelector("#my-book")
 newBookBtn.addEventListener("click", ()=>{
     dialog.showModal()
 })
+
+//submit
+const form=document.querySelector("form")
+
+form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+
+    const title=document.querySelector("#title").value;
+    const author=document.querySelector("#author").value;
+    const pages=document.querySelector("#pages").value;
+    const read=document.querySelector("#read").ariaChecked;
+
+    addBookToMyLibrary(title, author, pages, read);
+
+    form.reset();
+    dialog.close();
+    display()
+})
+
+
