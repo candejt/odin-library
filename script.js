@@ -1,7 +1,7 @@
-//array stored books
+//stored books
 const myLibrary = [];
 
-//the constructor
+//constructor
 function Book(title, author, pages, read){
     this.title=title;
     this.author=author;
@@ -36,17 +36,41 @@ function display(){
     container.innerHTML='';
 
     //card
-    myLibrary.forEach((book)=>{
+    myLibrary.forEach((book, index)=>{
         const card= 
         `<div class="book-card">
             <h3>${book.title}</h3>
             <p>By: <span>${book.author}</span></p>
             <p>${book.pages}</p>
             <p>${book.read ? "Read":"No read yet"}</p>
+
+            <button class="toggle-btn" data-index="${index}"> Change status </button>
+            <button class="remove-btn" data-index="${index}"> Remove </button>
         </div>`;
         container.innerHTML += card;
     })
+    //remove
+    const removeButtons=document.querySelectorAll(".remove-btn");
+    removeButtons.forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+            const indexRemove=e.target.dataset.index;
+            myLibrary.splice(indexRemove, 1);
+            
+            display()
+        })
+    })
+    //read
+    const toggleButtons=document.querySelectorAll(".toggle-btn");
+    toggleButtons.forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+            const indexToggle=e.target.dataset.index;
+            myLibrary[indexToggle].toggleRead();
+            
+            display()
+        })
+    })
 }
+
 
 //create Book button
 const newBookBtn=document.querySelector("#new-book-btn")
