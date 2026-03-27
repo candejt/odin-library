@@ -23,7 +23,7 @@ function addBookToMyLibrary(title, author, pages, read){
     myLibrary.push(newBook);
 }
 
-addBookToMyLibrary('Dune', 'frank', 412, true)
+addBookToMyLibrary('Dune', 'Frank Herbert', 412, true)
 addBookToMyLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false)
 addBookToMyLibrary('1984', 'George Orwell', 328, true)
 addBookToMyLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false)
@@ -39,9 +39,20 @@ function display(){
     myLibrary.forEach((book)=>{
         const card= 
         `<div class="book-card">
-            <p>${book.info()}</p>
+            <h3>${book.title}</h3>
+            <p>By: <span>${book.author}</span></p>
+            <p>${book.pages}</p>
+            <p>${book.read ? "Read":"No read yet"}</p>
         </div>`;
         container.innerHTML += card;
     })
 }
 display()
+
+//create Book button
+const newBookBtn=document.querySelector("#new-book-btn")
+const dialog=document.querySelector("#my-book")
+
+newBookBtn.addEventListener("click", ()=>{
+    dialog.showModal()
+})
