@@ -97,11 +97,11 @@ form{
     font-weight: bold;
  }
  #add-btn{
-    background-color:#0984e3;
+    background-color:#ffac74ab;
     color: white;
  }
  #add-btn:hover{
-    background-color: #0873c4;
+    background-color: #ee8945ab;
  }
  #cancel-btn {
     background-color: #ebedf4;
