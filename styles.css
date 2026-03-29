@@ -1,5 +1,163 @@
-.book-card{
-    border:1px solid black; 
-    padding:10px;
-    margin:10px;
+:root {
+    --bg-color: #f4f7f6;      /* Gris muy claro, casi blanco */
+    --card-color: #ffffff;    /* Blanco puro */
+    --text-primary: #2d3436;  /* Casi negro para el texto principal */
+    --text-secondary: #636e72;/* Gris oscuro para detalles (By: author, Pages) */
+    --action-color: #0984e3;  /* Azul moderno y vibrante para botones */
+    --action-hover: #74b9ff;  /* Azul más claro al pasar el ratón */
+    --danger-color: #d63031;  /* Rojo para el botón 'Remove' */
+    --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+    --shadow-strong: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra para el dialog */
 }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container{
+    background-color: #f4f7f6;
+    color: #2d3436;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    gap: 50px;
+}
+.header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    font-size: 50px;
+    font-weight: bold;
+}
+#new-book-btn{
+    background-color: #ffac74ab;
+    color: white;
+    width: 10em;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(9,132,227,0.2);  
+    font-size: 20px;
+    font-weight: bold;
+}
+#new-book-btn:hover{
+    background-color: #ee8945ab;
+}
+#new-book-btn:active{
+    transform: translateY(1px);
+}
+#my-form{
+    background-color:#ffffff;
+    padding: 40px;
+    margin: auto;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+form{
+    display: grid;
+    gap: 10px;
+}
+ .input-group{
+    display: grid;
+    gap: 5px;
+    margin-bottom: 10px;
+ }
+ .input-group label{
+    font-weight: 600;
+ }
+ .input-group input{
+    font: inherit;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+ }
+ .checkbox-group{
+    font-weight: 600;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 50px;
+    align-items: center;
+ }
+ #add-btn, #cancel-btn{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    font: inherit;
+    font-weight: bold;
+ }
+ #add-btn{
+    background-color:#0984e3;
+    color: white;
+ }
+ #add-btn:hover{
+    background-color: #0873c4;
+ }
+ #cancel-btn {
+    background-color: #ebedf4;
+    color:#636e72;
+ }
+ #cancel-btn:hover{
+    background-color:#dadde6;
+    color: #2d3436;
+ }
+ #library{
+    background-color:#f4f7f6;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0;
+ }
+.book-card{
+    border:none;
+    padding:25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.book-card h3{
+    color: #1a1a1a;
+    margin-top: 4px;
+}
+.book-card p{
+    color:#636e72;
+    margin: 0;
+}
+.book-card p:first-of-type{
+    font-style: italic;
+}
+.toggle-btn, .remove-btn{
+    background-color: #ebedf4;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+.toggle-btn:hover{
+    background-color: #e2e6ea;
+}
+.remove-btn:hover{
+    background-color: #ffeef0;
+    color: #dc3545;
+}
+
+

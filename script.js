@@ -10,11 +10,13 @@ function Book(title, author, pages, read){
     this.id=crypto.randomUUID();
 }
 Book.prototype.toggleRead=function(){
-    this.read = !this.read
+    this.read = !this.read;
+}
+Book.prototype.readStatus=function(){
+    return this.read ? "Read" : "Not read yet";
 }
 Book.prototype.info=function(){
-    const readStatus=this.read ? "read" : "not read yet";
-    return `${this.title} by ${this.author}. ${this.pages} pages, ${readStatus}`
+    return `${this.title} by ${this.author}. ${this.pages} pages, ${this.readStatus()}`
 }
 
 //add books
@@ -42,7 +44,7 @@ function display(){
             <h3>${book.title}</h3>
             <p>By: <span>${book.author}</span></p>
             <p>${book.pages}</p>
-            <p>${book.read ? "Read":"No read yet"}</p>
+            <p>${book.readStatus()}</p>
 
             <button class="toggle-btn" data-index="${index}"> Change status </button>
             <button class="remove-btn" data-index="${index}"> Remove </button>
@@ -71,16 +73,15 @@ function display(){
     })
 }
 
-
 //create Book button
 const newBookBtn=document.querySelector("#new-book-btn")
-const dialog=document.querySelector("#my-book")
+const dialog=document.querySelector("#my-form")
 
 newBookBtn.addEventListener("click", ()=>{
     dialog.showModal()
 })
 
-//submit
+//submit books
 const form=document.querySelector("form")
 
 form.addEventListener('submit', (e)=>{
@@ -89,7 +90,7 @@ form.addEventListener('submit', (e)=>{
     const title=document.querySelector("#title").value;
     const author=document.querySelector("#author").value;
     const pages=document.querySelector("#pages").value;
-    const read=document.querySelector("#read").ariaChecked;
+    const read=document.querySelector("#read").checked;
 
     addBookToMyLibrary(title, author, pages, read);
 
@@ -98,4 +99,9 @@ form.addEventListener('submit', (e)=>{
     display()
 })
 
+//cancel
+const cancelBtn=document.querySelector("#cancel-btn")
+cancelBtn.addEventListener("click", ()=>{
+    dialog.close();
+})
 
