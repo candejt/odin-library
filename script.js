@@ -1,22 +1,24 @@
 //stored books
 const myLibrary = [];
 
-//constructor
-function Book(title, author, pages, read){
-    this.title=title;
-    this.author=author;
-    this.pages=pages;
-    this.read=read;
-    this.id=crypto.randomUUID();
-}
-Book.prototype.toggleRead=function(){
-    this.read = !this.read;
-}
-Book.prototype.readStatus=function(){
-    return this.read ? "Read" : "Not read yet";
-}
-Book.prototype.info=function(){
-    return `${this.title} by ${this.author}. ${this.pages} pages, ${this.readStatus()}`
+//class
+class Book{
+    constructor(title, author, pages, read){
+        this.title=title;
+        this.author=author;
+        this.pages=pages;
+        this.read=read;
+        this.id=crypto.randomUUID();
+    }
+    toggleRead(){
+        this.read = !this.read;
+    }
+    readStatus(){
+        return this.read ? "Read" : "Not read yet";
+    }
+    info(){
+        return `${this.title} by ${this.author}. ${this.pages} pages, ${this.readStatus()}`
+    }
 }
 
 //add books
@@ -24,13 +26,11 @@ function addBookToMyLibrary(title, author, pages, read){
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
 }
-
 addBookToMyLibrary('Dune', 'Frank Herbert', 412, true)
 addBookToMyLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false)
 addBookToMyLibrary('1984', 'George Orwell', 328, true)
 addBookToMyLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false)
 addBookToMyLibrary('The Great Gatsby', 'F. Scott Fitzgerald', 180, true)
-
 // display books
 function display(){  
     //empty
@@ -41,7 +41,7 @@ function display(){
     myLibrary.forEach((book, index)=>{
         const card= 
         `<div class="book-card">
-            <h3>${book.title}</h3>
+            <h3>${book.title}</h3> 
             <p>By: <span>${book.author}</span></p>
             <p>${book.pages}</p>
             <p>${book.readStatus()}</p>
@@ -72,7 +72,6 @@ function display(){
         })
     })
 }
-
 //create Book button
 const newBookBtn=document.querySelector("#new-book-btn")
 const dialog=document.querySelector("#my-form")
@@ -80,7 +79,6 @@ const dialog=document.querySelector("#my-form")
 newBookBtn.addEventListener("click", ()=>{
     dialog.showModal()
 })
-
 //submit books
 const form=document.querySelector("form")
 
@@ -98,10 +96,10 @@ form.addEventListener('submit', (e)=>{
     dialog.close();
     display()
 })
-
 //cancel
 const cancelBtn=document.querySelector("#cancel-btn")
 cancelBtn.addEventListener("click", ()=>{
     dialog.close();
 })
+
 
