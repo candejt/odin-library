@@ -80,21 +80,59 @@ newBookBtn.addEventListener("click", ()=>{
     dialog.showModal()
 })
 //submit books
-const form=document.querySelector("form")
+const form=document.querySelector("form");
+const author=document.getElementById('author');
+const authorError=document.querySelector('#author + span.error');
+const title = document.getElementById('title');
+const titleError = document.querySelector('#title + span.error');
+
+author.addEventListener('input', ()=>{
+    if(author.validity.valid){
+        authorError.textContent='';
+        authorError.className = 'error';
+    } else {
+        showError(author, authorError);
+    }
+});
+title.addEventListener('input', ()=>{
+    if(title.validity.valid){
+        titleError.textContent='';
+        titleError.className = 'error';
+    } else {
+        showError(title, titleError);
+    }
+});
+
+function showError(input, errorSpan) {
+    if (input.validity.valueMissing){
+        if (input.id === 'author'){
+            errorSpan.textContent = "Author's name is mandatory";
+        }else if (input === 'title'){
+            errorSpan.textContent = "Title is mandatory";
+        }
+    }
+   errorSpan.className = 'error active'
+}
 
 form.addEventListener('submit', (e)=>{
-    e.preventDefault();
+     if(!author.validity.valid || !title.validity.valid){
+        showError(title, titleError);
+        showError(author, authorError);
+        e.preventDefault();
+    } else {
+        e.preventDefault();
 
-    const title=document.querySelector("#title").value;
-    const author=document.querySelector("#author").value;
-    const pages=document.querySelector("#pages").value;
-    const read=document.querySelector("#read").checked;
+        const title=document.querySelector("#title").value;
+        const author=document.querySelector("#author").value;
+        const pages=document.querySelector("#pages").value;
+        const read=document.querySelector("#read").checked;
 
-    addBookToMyLibrary(title, author, pages, read);
+        addBookToMyLibrary(title, author, pages, read);
 
-    form.reset();
-    dialog.close();
-    display()
+        form.reset();
+        dialog.close();
+        display()
+    }
 })
 //cancel
 const cancelBtn=document.querySelector("#cancel-btn")
